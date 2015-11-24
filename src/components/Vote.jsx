@@ -1,6 +1,8 @@
 import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default React.createClass({
+    mixins: [PureRenderMixin],
     getPair: function() {
         return this.props.pair || [];
     },
@@ -15,13 +17,15 @@ export default React.createClass({
 
         return (
             <div className="voting">
-            {pair.map(entry => {
-                return (<button key={entry} onClick={() => this.props.vote(entry)} disabled={this.isDisabled()}>
-                    <h1>{entry}</h1>
-                    {this.hasVotedFor(entry) ? <div className='label'>Voted</div>
-                                      : null}
-                </button>);
-            })}
+                {pair.map(entry => {
+                    return (
+                        <button key={entry} onClick={() => this.props.vote(entry)} disabled={this.isDisabled()}>
+                            <h1>{entry}</h1>
+                            {this.hasVotedFor(entry) ? <div className='label'>Voted</div>
+                                                     : null}
+                        </button>
+                    );
+                })}
             </div>
         );
     }
