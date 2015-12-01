@@ -13,11 +13,9 @@ export default React.createClass({
         return this.props.hasVoted === entry;
     },
     render: function() {
-        var pair = this.getPair();
-
         return (
             <div className="voting">
-                {pair.map(entry => {
+                {this.getPair().map(entry => {
                     return (
                         <button key={entry} onClick={() => this.props.vote(entry)} disabled={this.isDisabled()}>
                             <h1>{entry}</h1>
